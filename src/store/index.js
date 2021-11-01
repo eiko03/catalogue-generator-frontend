@@ -10,16 +10,16 @@ const ProductModule = {
   },
   mutations: {
     setproducts: (state, products) => (state.products = products),
-    addnewproducts:(state, product)=>state.products.unshift(product)
+    addnewproducts:(state, product)=>state.products[0].unshift(product)
   },
   actions: {
     async fetchproducts({ commit }) {
       const response = await api.get_products();
       commit("setproducts", response.data);
     },
-    async addproducts({ commit },name,description,price) {
-      const response = await api.add_products({name,description,price});
-      commit("addnewproducts", {name,description,price});
+    async addproducts({ commit },payload) {
+      const response = await api.add_products(payload);
+      commit("addnewproducts", payload);
     },
   },
 };
@@ -33,16 +33,16 @@ const CatelogueModule = {
   },
   mutations: {
     setcatalogues: (state, catalogues) => (state.catalogues = catalogues),
-    addnewcatalogues:(state, catalogues)=>state.catalogues.unshift(catalogues)
+    addnewcatalogues:(state, catalogues)=>state.catalogues[0].unshift(catalogues)
   },
   actions: {
     async fetchcatalogues({ commit }) {
       const response = await api.get_catalogues();
       commit("setcatalogues", response.data);
     },
-    async addcatalogues({ commit },name,product_id) {
-      const response = await api.add_catalogues();
-      commit("addnewcatalogues", {name,product_id});
+    async addcatalogues({ commit },payload) {
+      const response = await api.add_catalogues(payload);
+      commit("addnewcatalogues", {payload});
     },
   },
 };

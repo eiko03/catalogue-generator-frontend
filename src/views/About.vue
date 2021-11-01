@@ -1,10 +1,20 @@
 <template>
   <div >
-    <table class="flex border-2 p-2">
-      <tr v-for="catalogue in allcatalogues[0]" :key="product.id">
-        <td>{{catalogue.name}}</td>
-        <td>{{product.product_id}}</td>
+    <table class="table table-bordered table-dark">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Products</th>
       </tr>
+      </thead>
+      <tbody>
+      <tr v-for="catalogue in allcatalogues[0]" :key="catalogue.id">
+        <input class="form-check-input" type="checkbox" value={{product.id}} id="flexCheckDefault"
+               @click="checked()">
+        <td>{{catalogue.name}}</td>
+      </tr>
+      </tbody>
     </table>
   </div>
 </template>
